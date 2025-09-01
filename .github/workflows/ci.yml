@@ -20,18 +20,18 @@ jobs:
 
       # Backend (Express)
       - name: Install backend deps
+        working-directory: ./backend
         run: npm install
-        working-directory: ./backend
 
-      - name: Backend lint (skip if none)
-        run: echo "no lint step"
+      - name: Backend tests (skip if not present)
         working-directory: ./backend
+        run: npm test --if-present
 
       # Frontend (React)
       - name: Install frontend deps
+        working-directory: ./frontend
         run: npm install
-        working-directory: ./frontend
 
-      - name: Build frontend
-        run: npm run build
+      - name: Frontend build
         working-directory: ./frontend
+        run: npm run build --if-present
